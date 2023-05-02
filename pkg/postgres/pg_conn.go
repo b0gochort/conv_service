@@ -6,12 +6,19 @@ import (
 	"github.com/go-pg/pg/v10"
 )
 
-func NewPostgres() (*pg.DB, error) {
+type PG struct {
+	Addr         string
+	User         string
+	Password     string
+	DataBaseName string
+}
+
+func NewPostgres(cfg PG) (*pg.DB, error) {
 	db := pg.Connect(&pg.Options{
-		User:     "postgres",
-		Password: "king1337",
-		Addr:     "localhost:5432",
-		Database: "coursch",
+		User:     cfg.User,
+		Password: cfg.Password,
+		Addr:     cfg.Addr,
+		Database: cfg.DataBaseName,
 	})
 
 	err := db.Ping(context.Background())
