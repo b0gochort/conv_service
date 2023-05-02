@@ -33,10 +33,10 @@ func main() {
 		panic(fmt.Sprintf("Error when init logger: %v", logErr))
 	}
 	db, dbErr := postgres.NewPostgres(postgres.PG{
-		Addr:         config.DataBase.Addr,
-		User:         config.DataBase.User,
-		Password:     config.DataBase.Password,
-		DataBaseName: config.DataBase.DataBaseName,
+		Addr:         config.PG.Addr,
+		User:         config.PG.User,
+		Password:     config.PG.Password,
+		DataBaseName: config.PG.DataBaseName,
 	})
 	if dbErr != nil {
 		logger.Panic("Error when connect to DB %s", zap.Field{
@@ -45,7 +45,7 @@ func main() {
 	}
 	e := echo.New()
 	e.Use(echozap.ZapLogger(logger))
-	if err := e.Start(":8000"); err != nil {
+	if err := e.Start(config.HTTP.PORT); err != nil {
 		panic(err)
 	}
 
