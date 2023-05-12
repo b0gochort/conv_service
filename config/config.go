@@ -33,3 +33,5 @@ func LoadConfig() (config *Config, err error) {
 
 	return cfg, nil
 }
+
+var i int = 10

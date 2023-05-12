@@ -27,7 +27,7 @@ func (uc *UsersUseCase) SignUp(request *request.SignUpReq) error {
 
 	_, err := uc.repo.GetUserByEmail(request.Email)
 
-	if err != nil {
+	if err == nil {
 		return err
 	}
 

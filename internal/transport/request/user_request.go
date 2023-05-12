@@ -7,7 +7,7 @@ import (
 
 // SignUpReq represent signup request body
 type SignUpReq struct {
-	Username string `json:"Username"`
+	Username string `json:"username"`
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }

@@ -1,11 +1,14 @@
 package usecase
 
-import "github.com/b0gochort/conv_service/internal/entity"
+import (
+	"github.com/b0gochort/conv_service/internal/entity"
+	"github.com/b0gochort/conv_service/internal/transport/request"
+)
 
 type (
-	User interface {
-		SignUp(user entity.User) error
-		LogIn(email, password string) (entity.User, error)
+	UserUseCase interface {
+		SignUp(request *request.SignUpReq) error
+		LogIn(request *request.LogInReq) (string, error)
 	}
 	UserRepo interface {
 		Create(user *entity.User) error
